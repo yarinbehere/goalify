@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">goalify</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="timeline">Timeline</string>
+    <string name="steps">Steps:</string>
+    <string name="weekly_progress">Weekly Progress</string>
+    <string name="set_realistic_goals">Set realistic goals</string>
+    <string name="be_active_be_healthy_set_goals">Be active. Be healthy. Set goals.</string>
+    <string name="daily_goal">Daily Goal</string>
+    <string name="daily_activity">Daily Activity</string>
+
 </resources>

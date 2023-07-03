@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
     <View
@@ -9,35 +10,34 @@
         android:layout_width="2dp"
         android:layout_height="match_parent"
         android:layout_marginVertical="20dp"
-        android:visibility="invisible"
-        android:background="#0284FD" />
+        android:background="#0284FD"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:paddingVertical="15dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingVertical="15dp">
 
         <LinearLayout
-            android:layout_weight="0.5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:gravity="right"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="NestedWeights,RtlHardcoded">
 
             <TextView
                 android:id="@+id/tvDayInMonthItem"
-                android:text="8"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDayNameItem"
-                android:text="SUN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -49,7 +49,7 @@
             android:layout_height="45dp"
             android:layout_marginHorizontal="5dp"
             android:alpha="0.5"
-            android:background="#808080"/>
+            android:background="#808080" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/circularProgressIndicator"
@@ -66,17 +66,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.8"
-            android:paddingHorizontal="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
 
             <TextView
-                android:text="Steps:"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/steps" />
 
             <TextView
                 android:id="@+id/tvDayProgressItem"
-                android:text="500/4000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -90,21 +89,21 @@
 
             <TextView
                 android:id="@+id/tvKCalItem"
-                android:text="50 KCAL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:drawableStart="@drawable/progress_list_item_indicator"
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:text="50 KCAL" />
 
             <TextView
                 android:id="@+id/tvMetersItem"
-                android:text="500 M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:drawableStart="@drawable/progress_list_item_indicator"
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:text="500 M" />
 
         </LinearLayout>
 

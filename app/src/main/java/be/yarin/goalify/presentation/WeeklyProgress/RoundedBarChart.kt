@@ -16,7 +16,6 @@ import com.github.mikephil.charting.renderer.BarChartRenderer
 import com.github.mikephil.charting.utils.Utils
 import com.github.mikephil.charting.utils.ViewPortHandler
 
-
 internal class RoundedBarChart : BarChart {
     constructor(context: Context?) : super(context) {}
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {

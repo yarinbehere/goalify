@@ -1,28 +1,16 @@
 package be.yarin.goalify.presentation.WeeklyProgress
 
-import android.R
-import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Paint
-import android.graphics.RectF
-import android.graphics.Shader
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import be.yarin.goalify.domain.model.DailyProgress
 import be.yarin.goalify.presentation.Timeline.TimelineFragment
-import com.github.mikephil.charting.animation.ChartAnimator
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -31,28 +19,15 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.highlight.Range
-import com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.renderer.BarChartRenderer
-import com.github.mikephil.charting.renderer.XAxisRenderer
-import com.github.mikephil.charting.utils.MPPointF
-import com.github.mikephil.charting.utils.Transformer
-import com.github.mikephil.charting.utils.Utils
-import com.github.mikephil.charting.utils.ViewPortHandler
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 @AndroidEntryPoint
 class WeeklyProgressFragment : Fragment() {
 
     private val viewModel by activityViewModels<WeeklyProgressViewModel>()
-
-    private lateinit var barChart: BarChart
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,33 +41,26 @@ class WeeklyProgressFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collectLatest { state ->
-                Log.d(TAG, "Weekly progress: $state")
                 if (!state.isLoading && state.weeklyProgress.isNotEmpty()) {
-                    Log.d(TAG, "Weekly progress: loaded")
                     activity?.runOnUiThread {
                         drawChart(state.weeklyProgress)
                     }
-                } else {
-                    Log.d(TAG, "Weekly progress: loading")
                 }
             }
         }
 
-        // go to timeline fragment
         view.findViewById<View>(be.yarin.goalify.R.id.btn_weeklyprogress_timeline)?.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                // add on top of the current fragment
                 ?.replace(be.yarin.goalify.R.id.fragment_container, TimelineFragment.newInstance())
                 ?.addToBackStack(this@WeeklyProgressFragment::class.java.name)
                 ?.commit()
         }
     }
 
-    fun drawChart(weeklyProgress: List<DailyProgress>) {
+    private fun drawChart(weeklyProgress: List<DailyProgress>) {
         // Define the days of the week
         val daysOfWeek = Calendar.getInstance().getListOfDays()
 
-        Log.d(TAG, "daysOfWeek: $daysOfWeek")
         // Create bar data sets
         val barDataSetBlue =
             createBarDataSet(weeklyProgress, "Activity", Color.parseColor("#0284FD"), daysOfWeek)
